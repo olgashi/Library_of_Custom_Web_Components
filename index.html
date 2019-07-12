@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Web components</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/languages/htmlbars.min.js">
+    <!-- <script src="./faq/dictionary.js" defer></script>
+    <script src="./reveal-text/reveal-text.js" defer></script>
+    <script src="./tooltip/tooltip-component.js" defer></script>
+    <script src="./navbar/navbar.js" defer></script>
+    <script src="./image-card/img-card.js" defer></script>
+    <script src="./button/my-button.js" defer></script>
+    <script src="./divider/simple-divider.js" defer></script>
+    <script src="./modal/modal-component.js" defer></script> -->
+    <script src="https://unpkg.com/npm-os-web-components@1.0.5/main.js" defer></script>
+    <style>
+      body {
+        background: #E3F4FF;
+      }
+      li {
+        cursor: pointer;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        color: #002E7A;
+        list-style: none;
+      }
+      .cards {
+        /* display: flex; */
+        max-width: 500px;
+        margin: 0 auto;
+        /* justify-content: center; */
+      }
+      .button-box {
+        max-width: 80%;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .component-header {
+        height: 100px;
+        padding-left: 100px;
+        color: #2679B1;
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        font-size: 1.5em;
+      }
+      .main {
+        background: white;
+        max-width: 80%;
+        margin: auto;
+      }
+      .answer{
+        max-width: 500px;
+        margin: auto;
+        background: yellow;
+      }
+      .center {
+        max-width: 500px;
+        margin: auto;
+        text-align: center;
+      }
+      .docs {
+        max-width: 90%;
+        padding-left: 50px;
+        padding-top: 50px;
+        font-family:monospace;
+        font-size: 1em;
+        margin: auto;
+      }
+      .code{
+        font-family:monospace;
+        font-size: 1em;
+        color: #BC2764;
+      }
+      .example-code, .comments {
+        font-family:monospace;
+        font-size: 1em;
+        color: #3D527A;
+      }
+      .description {
+        font-size: 1.2em;
+      }
+      .slide {
+        max-width: 80%;
+        margin: auto;
+        text-align: left;
+        font-family:monospace;
+        font-size: 1.5em;
+        color: #3D527A;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="slide">
+        <divider-component type="hidden"></divider-component>
+        <p>Olga Shiryaeva</p>
+        <p>Small library of reusable custom elements using</p>
+        <span class="component-header center">Web components
+        </span>
+        <divider-component type="hidden"></divider-component>
+        <divider-component type="hidden"></divider-component>
+        <ul>
+          <li>set of technologies allowing to 
+              create reusable custom elements
+          </li>
+          <divider-component type="hidden"></divider-component>
+
+          <li>their functionality encapsulated 
+              away from the rest of the code
+          </li>
+          <divider-component type="hidden"></divider-component>
+          <li>do not depend on any external libraries/frameworks</li>
+          <divider-component type="hidden"></divider-component>
+          <li>easy to use across different web apps</li>
+        </ul>
+        <divider-component type="hidden"></divider-component>
+        <divider-component type="hidden"></divider-component>
+      </div>
+      <divider-component type="regular"></divider-component>
+      <div class="slide">
+
+        <divider-component type="hidden"></divider-component>
+        <h4>Three main technologies:</h4>
+        <ul>
+          <li>Custom elements: custom elements treated by the browser as regular html tags.</li>
+          <divider-component type="hidden"></divider-component>
+          <li>Shadow DOM: lets create a "shadow" DOM tree on any element; hidden away to avoid collision with other parts of the document.</li>
+          <divider-component type="hidden"></divider-component>
+          <li>HTML templates: The <xmp><template></xmp> and <xmp><slot></xmp> elements allow to write markup templates that are not displayed on the page.</li>
+          <li></li>
+        </ul>
+        <divider-component type="hidden"></divider-component>
+      </div>
+      <divider-component type="regular"></divider-component>
+    
+      <xmp class="example-code">
+        predefinedStyle = `
+        .btn {
+          width: 100px;
+          height: 30px;
+          background: #299F12;
+          color: white;
+          border-radius: 5px;
+        }
+        .btn:focus{
+          outline: 0;
+        }
+        .btn:hover {
+          background: #579F12;
+          cursor: pointer;
+        }
+    `
+         // Component:Button that reveals hidden text and destroys itself on click
+
+          class RevealInfoComponent extends HTMLElement {
+            // connectedCallback() runs each time the element is added to the DOM
+
+            connectedCallback() {
+
+              // grab all paragraphs and set display to none
+
+              const paragraphs = Array.from(this.querySelectorAll(':root p'));
+              paragraphs.forEach(p => {
+                p.style.display="none"
+              })
+
+              const button = document.createElement("button");
+              button.setAttribute("class", "btn");
+              button.innerHTML = "Reveal-text"
+              const showHiddenContent = document.createElement('div')
+
+              //event listener
+
+              button.addEventListener("click", () => {
+                paragraphs.forEach(paragraph => {
+                  paragraph.style.display="inline-block"
+                  showHiddenContent.appendChild(paragraph)
+                })
+
+                this.append(showHiddenContent);
+                showHiddenContent.style.width="100%"  
+
+                // remove button from the DOM once event took place
+                button.remove()
+              });
+
+              // create style element and apply style
+              const style = document.createElement("style");
+              style.textContent = predefinedStyle;
+              button.appendChild(style)
+              this.append(button)
+            }
+          }
+          // CustomElementRegistry object allows to register a custom element on the page
+          // the browser will recognize <reveal-text></reveal-text> as a custom web component 
+          // and will treat it like any other html tag
+
+
+          customElements.define("reveal-text", RevealInfoComponent);
+        
+        
+      </xmp>
+      <divider-component type="hidden"></divider-component>
+        <span class="component-header">Navbar component</span>
+      <div class="docs">
+        <p class="description">A simple navbar component that has multiple links and a logo.</p>
+        <xmp class="code">
+          <nav-bar></nav-bar>
+        </xmp>
+      <div class="description">
+              <p>Example code</p>
+        <xmp class="example-code">
+            <nav-bar>
+              <img src='img/logo.png'>
+              <a href="https://www.somepage.com/">Link1</a>
+              <a href="https://www.somepage.com/">Link2</a>
+              <a href="https://www.somepage.com/">Link3</a>
+              <a href="https://www.somepage.com/">Link4</a>
+              <a href="https://www.somepage.com/">Link5</a>
+            </nav-bar>
+        </xmp>
+      </div>
+      </div>
+        <divider-component type="hidden"></divider-component>
+    <nav-bar>
+        <img src='img/logo.png'>
+        <a href="https://www.google.com/#">Link1</a>
+        <a href="https://www.google.com/#">Link2</a>
+        <a href="https://www.google.com/#">Link3</a>
+        <a href="https://www.google.com/#">Link4</a>
+        <a href="https://www.google.com/#">Link5</a>
+    </nav-bar>
+    <divider-component type="hidden"></divider-component>
+    <span class="component-header">Dictionary component.</span>
+    <div class="docs">
+        <p class="description">Displays a list of questions/terms; on click displays corresponding answers and picture if any.</p>
+        <xmp class="code">
+        <dictionary-component></dictionary-component>
+        </xmp>
+       
+        </div>
+<!-- dictionary or FAQ like component -->
+<div class="center">
+    <dictionary-component>
+      //list of questions
+      <ul slot="question-list">
+        <li>Why do cats purr?</li>
+        <li>Why cats sleep so much?</li>
+        <li>How high can cats jump?</li>
+        <li>Why do cats love boxes?</li>
+      </ul>
+<!-- List of answers with corresponding pictures, where 'data-name attribute is a question from the list above' -->
+      <p data-name="Why do cats purr?">Purring for cats is the same as smiling for humans.</p>
+      <p data-name="Why cats sleep so much?">Basically, cats sleep a lot because they need to conserve energy, so they can hunt during the day.</p>
+      <p data-name="How high can cats jump?">Cats can jump five times their height. WOW!</p>
+      <p data-name="Why do cats love boxes?">Cats love being inside a box because they feel safe there.</p>
+
+      <img data-name="Why do cats purr?" src="img/purr.png"></img>
+      <img data-name="Why cats sleep so much?" src="img/sleep.png"></img>
+      <img data-name="How high can cats jump?" src="img/jump.png"></img>
+      <img data-name="Why do cats love boxes?" src="img/box.png"></img>
+      </dictionary-component>
+
+     
+      <!-- Template is used to insert appropriate answers and images in slots -->
+      <template id="summary-display-template">
+        <article>
+          <div>
+            <slot name="question-list"></slot>
+          </div>
+          <div class="answer">
+            <div>
+
+              <slot name="answer"></slot>
+            </div>
+            <div>
+              <slot name="image"></slot>
+            </div>
+          </div>
+        </article>
+      </template>
+    </div>
+      <divider-component type="regular"></divider-component>
+
+      <span class="component-header">Button Component</span>
+
+      <div class="docs">
+          <p class="description">Types: outlined, regular, positive, negative, and disabled. Attributes: label and type.</p>
+          <xmp class="code">
+            <my-button></my-button>
+          </xmp>
+        <div class="description">
+          <p>Example code</p>
+          <xmp class="example-code">
+              <my-button label='Outlined' type="outlined" onClick=displayAlert()></my-button>
+          </xmp>
+        </div>
+      </div>
+    <div class="button-box">
+
+      <my-button label='Outlined' type="outlined" onClick=displayAlert()></my-button>
+      <divider-component type="hidden"></divider-component>
+      <my-button label='Regular' type="regular"></my-button>
+      <divider-component type="hidden"></divider-component>
+      <my-button label='Positive' type="positive"></my-button>
+      <divider-component type="hidden"></divider-component>
+      <my-button label='Negative' type="negative"></my-button>
+      <divider-component type="hidden"></divider-component>
+      <my-button label='Disabled' type="disabled"></my-button>
+      
+    </div>
+    <divider-component type="regular"></divider-component>
+      <span class="component-header">"Reveal-text" component</span>
+      <div class="docs">
+          <p class="description">Reveals text on click and then removes itself from the DOM. It can take any number of paragraphs. </p>
+          <xmp class="code">
+              <reveal-text></reveal-text>
+          </xmp>
+        <div class="description">
+          <p>Example code</p>
+          <xmp class="example-code">
+              <reveal-text>
+                  <p>some text</p>
+                  <p>some mopre text</p>
+                  <p>even more text</p>
+              </reveal-text>
+          </xmp>
+        </div>
+      </div>
+
+      <div class="center">
+
+        <divider-component type="hidden"></divider-component>
+        <!-- reveal info component hides included text until the button is clicked -->
+        <reveal-text>
+          <p>To aid with navigation and sensation, cats have dozens of movable whiskers over their body, 
+            especially their face. These provide information on the width of gaps and on the location of 
+            objects in the dark, both by touching objects directly and by sensing air currents. 
+          </p>
+            
+          <p>Domestic cats use many vocalisations for communication, including purring, trilling, 
+            hissing, growling/snarling, grunting, and several different forms of meowing. By contrast, 
+            feral cats are generally silent.
+          </p>
+              
+          <p>The mechanism by which cats purr is elusive. The cat has no unique anatomical feature 
+            that is clearly responsible for the sound. However, felids of the Panthera genus 
+            (tiger, lion, jaguar and leopard) also produce sounds similar to purring, but only when 
+            exhaling.
+          </p>
+                
+          <p>Do cats always land on their feet? Not always, but they have better balance 
+            than most animals. When cats spread out their back and front legs they fall more slowly, 
+            because their bodies act as a parachute. The tail can also help balance a cat.
+          </p>
+                  
+          <p>The first cat in space was a French cat named Felicette (a.k.a. “Astrocat”) In 1963, 
+            France blasted the cat into outer space. Electrodes implanted in her brains sent 
+            neurological signals back to Earth. She survived the trip.
+          </p>
+                    
+          <p>The earliest ancestor of the modern cat lived about 30 million years ago. Scientists 
+            called it the Proailurus, which means “first cat” in Greek. The group of animals that
+            pet cats belong to emerged around 12 million years ago.
+          </p>
+                      
+          <p>Cats hate the water because their fur does not insulate well when it’s wet. The ∏
+            Turkish Van, however, is one cat that likes swimming. Bred in central Asia, its coat 
+            has a unique texture that makes it water resistant.
+          </p>
+                        
+        </reveal-text>
+      </div>
+    <divider-component type="regular"></divider-component>
+    <span class="component-header">Tooltip component</span>
+
+    <div class="docs">
+        <p class="description">Displays text on hover. Attributes: img, text, size.</p>
+        <xmp class="code">
+            <tooltip-component></tooltip-component>
+        </xmp>
+      <div class="description">
+        <p>Example code</p>
+        <xmp class="example-code">
+            <tooltip-component img="img.png" text="text to display" size="large">
+            </tooltip-component>
+        </xmp>
+      </div>
+    </div>
+    <divider-component type="hidden"></divider-component>
+   
+    <div class="center">
+      <!-- Tooltip component; displays hidden text on hover. -->
+      <tooltip-component img="img/icons/yarn.png" text="Cats love playing with string like objects." size="small"></tooltip-component>
+      <tooltip-component img="img/icons/black-evil-cat.png" text="Cats love knocking stuff over for fun." size="medium"></tooltip-component>
+      <tooltip-component img="img/icons/cat.png" text="Cats love watching tv." size="large"></tooltip-component>
+    </div>
+    <divider-component type="regular"></divider-component>
+    <span class="component-header">Image-Card component</span>
+    <div class="docs">
+        <p class="description">Displays an image and a description. Attributes: image, text, size.</p>
+        <xmp class="code">
+            <image-card></image-card>
+        </xmp>
+      <div class="description">
+        <p>Example code</p>
+        <xmp class="example-code">
+            <image-card img="img/cat1.jpg" size="small" text="Some text"></image-card>
+        </xmp>
+      </div>
+    </div>
+    <div class="cards">
+      <!-- text attribute takes a short 1-2 sentense text -->
+      <divider-component type="hidden"></divider-component>
+      <image-card img="img/cat1.jpg" size="small" text="The Siamese cat breed has strikingly large ears and attractive baby blue eyes. This is an outgoing, social cat which relies heavily on human companionship. 
+      It is a born chatterbox, loving to communicate with those around it."></image-card>
+      <divider-component type="hidden"></divider-component>
+      <image-card img="img/cat1.jpg" size="large" text="The Siamese cat breed has strikingly large ears and attractive baby blue eyes. This is an outgoing, social cat which relies heavily on human companionship. 
+      It is a born chatterbox, loving to communicate with those around it."></image-card>
+
+    </div>
+    <script>
+      function displayAlert(){
+        alert('Hello there!')
+      }
+    </script>
+    <divider-component type="regular"></divider-component>
+    
+    <span class="component-header">Modal Component</span>
+    <div class="docs">
+        <p class="description">Displays a box/popup window on click. Attributes: label, text.</p>
+        <xmp class="code">
+            <modal-button></modal-button>
+        </xmp>
+      <div class="description">
+        <p>Example code</p>
+        <xmp class="example-code">
+            <modal-button label='Open Modal' text="Some text"></modal-button>
+        </xmp>
+      </div>
+    </div>
+    <divider-component type="hidden"></divider-component>
+    <div class="center">
+      <modal-button label='Open Modal' text="Cats have furry tufts on the inside of their ears that insulate them, whilst helping to keep out debris. They are referred to as ‘ear furnishings’."></modal-button>
+    </div>
+    <divider-component type="hidden"></divider-component>
+    <divider-component type="regular"></divider-component>
+    <div class="slide">
+      <p> Published to NPM </p>
+      https://www.npmjs.com/package/npm-os-web-components
+    </div>
+
+  </div>
+  </body>
+</html>

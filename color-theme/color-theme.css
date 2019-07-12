@@ -1,0 +1,31 @@
+/* Theme 1 */
+
+/* Color Theme Swatches in Hex */
+.Palette_Coogito_v01-1-hex { color: #6BC1FA; }
+.Palette_Coogito_v01-1-hex { color: #E3F4FF; }
+.Palette_Coogito_v01-1-hex { color: #2679B1; }
+.Palette_Coogito_v01-2-hex { color: #8ABA07; }
+.Palette_Coogito_v01-2-hex { color: #EAFFE3; }
+.Palette_Coogito_v01-3-hex { color: #D7DA00; }
+.Palette_Coogito_v01-4-hex { color: #E83E1A; }
+.Palette_Coogito_v01-4-hex { color: #F27C1B; }
+.Palette_Coogito_v01-4-hex { color: #FAAC6B; }
+.Palette_Coogito_v01-4-hex { color: #FFF0E3; }
+.Palette_Coogito_v01-5-hex { color: #BC2764; }
+.Palette_Coogito_v01-5-hex { color: #99BCCC; }
+.Palette_Coogito_v01-5-hex { color: #396980; }
+.Palette_Coogito_v01-5-hex { color: #3D527A; }
+
+/* Color Theme Swatches in RGBA */
+.Palette_Coogito_v01-1-rgba { color: rgba(38, 121, 177, 1); }
+.Palette_Coogito_v01-2-rgba { color: rgba(137, 186, 7, 1); }
+.Palette_Coogito_v01-3-rgba { color: rgba(214, 218, 0, 1); }
+.Palette_Coogito_v01-4-rgba { color: rgba(242, 124, 26, 1); }
+.Palette_Coogito_v01-5-rgba { color: rgba(188, 38, 100, 1); }
+
+/* Color Theme Swatches in HSLA */
+.Palette_Coogito_v01-1-hsla { color: hsla(204, 64, 42, 1); }
+.Palette_Coogito_v01-2-hsla { color: hsla(76, 92, 37, 1); }
+.Palette_Coogito_v01-3-hsla { color: hsla(60, 100, 42, 1); }
+.Palette_Coogito_v01-4-hsla { color: hsla(27, 89, 52, 1); }
+.Palette_Coogito_v01-5-hsla { color: hsla(335, 65, 44, 1); }
