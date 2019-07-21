@@ -126,23 +126,18 @@ class ButtonComponent extends HTMLElement {
     switch (buttonType) {
       case "regular":
         chosenStyle = buttonStyles.regular;
-        console.log(chosenStyle)
         break;
       case "outlined":
         chosenStyle = buttonStyles.outlined;
-        console.log(chosenStyle)
         break;
       case "positive":
         chosenStyle = buttonStyles.positive;
-        console.log(chosenStyle)
         break;
       case "negative":
         chosenStyle = buttonStyles.negative;
-        console.log(chosenStyle)
         break;
       case "disabled":
         chosenStyle = buttonStyles.disabled;
-        console.log(chosenStyle)
         break;
       default:
         chosenStyle = buttonStyles.regular;
@@ -156,7 +151,6 @@ class ButtonComponent extends HTMLElement {
 }
 // Define the new element
 customElements.define("my-button", ButtonComponent);
-
 
 const dividerStyles = {
   regular: `
@@ -246,6 +240,7 @@ customElements.define("divider-component", DividerComponent);
         questions.forEach(question => {
           // to make sure the active question is different color but all other stay default color
           question.style.color = "#002E7A";
+          question.style.cursor = "pointer";
         });
         //iterate over array with answers
         answers.forEach(answer => {
@@ -348,7 +343,6 @@ const styleSize = {
     super();
      // Create a shadow root
      const shadow = this.attachShadow({ mode: "open" });
-
      // Create spans
      const wrapper = document.createElement("div");
      wrapper.setAttribute("class", "wrapper");
@@ -363,7 +357,6 @@ const styleSize = {
 
      const text = this.getAttribute("text");
      info.textContent = text;
-     
      
      let imgUrl = this.getAttribute("img");
      
@@ -408,7 +401,7 @@ customElements.define("image-card", ImageCardComponent);
 
     const button = document.createElement("button");
     button.setAttribute("class", "btn");
-    button.innerHTML = "Reveal-text"
+    button.innerHTML = "Reveal text"
     const showHiddenContent = document.createElement('div')
     
     button.addEventListener("click", () => {
@@ -543,10 +536,6 @@ customElements.define("reveal-text", RevealInfoComponent);
 customElements.define("tooltip-component", TooltipComponent);
 
  class NavBarComponent extends HTMLElement {
-  // do something with it
-  static get observedAttributes() {
-    return ['color'];
-  }
   connectedCallback() {
     const shadow = this.attachShadow({ mode: "open" });
 
@@ -562,25 +551,14 @@ customElements.define("tooltip-component", TooltipComponent);
     })
 
     const logo = this.querySelector('img')
-    const logoContainer = document.createElement("div")
-    logoContainer.setAttribute("class", "logoContainer");
-    logoContainer.appendChild(logo)
-    linkContainer.appendChild(logoContainer)
-
-    console.log('--->',logo)
-    const button = document.createElement("button")
-    button.setAttribute("class", "btn");
-
-    button.innerHTML = "Click and see what happens..."
+    if (logo) {
+      const logoContainer = document.createElement("div")
+      logoContainer.setAttribute("class", "logoContainer");
+      logoContainer.appendChild(logo)
+      linkContainer.appendChild(logoContainer)
+    }
 
     const style = document.createElement("style");
-
-    button.addEventListener("click", () => {
-      navBar.style.background="purple"
-
-      button.remove()
-
-    });
 
     style.textContent = `
       .nav {
@@ -600,6 +578,7 @@ customElements.define("tooltip-component", TooltipComponent);
         text-decoration: none;
         font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
         font-size: 1.3em;
+        cursor: pointer;
       } 
       .logoContainer {
         padding-top: 20px;
@@ -612,9 +591,6 @@ customElements.define("tooltip-component", TooltipComponent);
     shadow.appendChild(navBar);
     navBar.appendChild(linkContainer) 
   } 
-  attributeChangedCallback(name, oldVal, newVal) {
-    this[name] = newVal
-  }
 }
 customElements.define("nav-bar", NavBarComponent)
 
@@ -647,7 +623,6 @@ customElements.define("nav-bar", NavBarComponent)
     modalTextSpan.innerHTML = modalContent
 
     modal.style.display = "none";
-    console.log(modal);
     // modal container close button
     const closeModalBtn = document.createElement("button");
     closeModalBtn.innerHTML="x"
@@ -730,3 +705,5 @@ customElements.define("nav-bar", NavBarComponent)
     modal.appendChild(modalStyle)
   }
 }
+
+customElements.define("modal-button", ModalComponent)

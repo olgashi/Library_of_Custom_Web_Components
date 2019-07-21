@@ -1,6 +1,6 @@
 {
   "name": "npm-os-web-components",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "small library of web components created using vanilla JavaScript",
   "main": "main.js",
   "scripts": {
