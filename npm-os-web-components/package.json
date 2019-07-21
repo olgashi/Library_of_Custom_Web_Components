@@ -1,0 +1,32 @@
+{
+  "name": "npm-os-web-components",
+  "version": "1.0.5",
+  "description": "small library of web components created using vanilla JavaScript",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/olgashi/my-component-library.git"
+  },
+  "keywords": [
+    "web-components",
+    "shadow",
+    "dom",
+    "custom",
+    "web",
+    "components",
+    "npm",
+    "package"
+  ],
+  "author": "Olga Shiryaeva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olgashi/my-component-library/issues"
+  },
+  "homepage": "https://github.com/olgashi/my-component-library#readme",
+  "dependencies": {
+    "user": "0.0.0"
+  }
+}

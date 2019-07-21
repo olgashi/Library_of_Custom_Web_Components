@@ -2,23 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Web components</title>
+    <title>Demo page for my Web components library</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/languages/htmlbars.min.js">
-    <!-- <script src="./faq/dictionary.js" defer></script>
-    <script src="./reveal-text/reveal-text.js" defer></script>
-    <script src="./tooltip/tooltip-component.js" defer></script>
-    <script src="./navbar/navbar.js" defer></script>
-    <script src="./image-card/img-card.js" defer></script>
-    <script src="./button/my-button.js" defer></script>
-    <script src="./divider/simple-divider.js" defer></script>
-    <script src="./modal/modal-component.js" defer></script> -->
     <script src="https://unpkg.com/npm-os-web-components@1.0.5/main.js" defer></script>
     <style>
       body {
         background: #E3F4FF;
       }
       li {
-        cursor: pointer;
         font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
         color: #002E7A;
         list-style: none;
@@ -85,40 +76,55 @@
         font-size: 1.5em;
         color: #3D527A;
       }
+      .created-by {
+        font-family: monospace;
+        font-size: 0.7em;
+      }
+      .page-header, .project-goal, .definition, .usage {
+        margin-top: 50px;
+        font-family: monospace;
+        font-size: 1.6em;
+        display: inline-block;
+      }
+
     </style>
   </head>
   <body>
     <div class="main">
       <div class="slide">
         <divider-component type="hidden"></divider-component>
-        <p>Olga Shiryaeva</p>
-        <p>Small library of reusable custom elements using</p>
-        <span class="component-header center">Web components
+        <span class="created-by">
+          <p>created by Olga Shiryaeva during Fullstack Academy's 'stackathon', cohort 1904</p>
         </span>
-        <divider-component type="hidden"></divider-component>
-        <divider-component type="hidden"></divider-component>
+        <span class="page-header">
+          <p>
+            What is this page? A demo page for a library of reusable custom elements using Web Components.
+          </p>
+        </span>
+        <span class="project-goal">
+            <p>
+              But Why? I wanted to learn hopw to make my own components, spread the word about Web Components as a technology and hopefully someone can use them for things..
+            </p>
+          </span>
+        <span class="definition">
+            <p>
+             So what the heck are they? Accoring to MDN Web Components are:
+            </p>
+          </span>
         <ul>
           <li>set of technologies allowing to 
               create reusable custom elements
           </li>
-          <divider-component type="hidden"></divider-component>
-
           <li>their functionality encapsulated 
               away from the rest of the code
           </li>
-          <divider-component type="hidden"></divider-component>
           <li>do not depend on any external libraries/frameworks</li>
-          <divider-component type="hidden"></divider-component>
           <li>easy to use across different web apps</li>
         </ul>
-        <divider-component type="hidden"></divider-component>
-        <divider-component type="hidden"></divider-component>
       </div>
-      <divider-component type="regular"></divider-component>
       <div class="slide">
-
         <divider-component type="hidden"></divider-component>
-        <h4>Three main technologies:</h4>
+        <h4>And here is more:</h4>
         <ul>
           <li>Custom elements: custom elements treated by the browser as regular html tags.</li>
           <divider-component type="hidden"></divider-component>
@@ -128,10 +134,19 @@
           <li></li>
         </ul>
         <divider-component type="hidden"></divider-component>
+        <span>Find more information about Web Components on MDN 
+          <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">here</a>
+        </span>
+        <span class="usage">
+            <p>
+              Ok, fine. How do I use them? See below. Also feel free to open your browser dev tools to poke around.
+            </p>
+          </span>
       </div>
+
       <divider-component type="regular"></divider-component>
-    
-      <xmp class="example-code">
+      
+      <!-- <xmp class="example-code">
         predefinedStyle = `
         .btn {
           width: 100px;
@@ -197,7 +212,7 @@
           customElements.define("reveal-text", RevealInfoComponent);
         
         
-      </xmp>
+      </xmp> -->
       <divider-component type="hidden"></divider-component>
         <span class="component-header">Navbar component</span>
       <div class="docs">
