@@ -7,7 +7,7 @@ https://olgashi.github.io/os-web-components.html
 # To use include in your html script tag:
 # 
 ```
-https://unpkg.com/npm-os-web-components@1.0.5/main.js
+https://unpkg.com/npm-os-web-components@1.0.10/main.js
 ```
 # 1. A simple navbar component that has multiple links and a logo.
 ```<nav-bar></nav-bar>```
