@@ -1,5 +1,4 @@
-# To use include in your html script tag:
-```https://unpkg.com/npm-os-web-components@1.0.5/main.js```
+# Demo page: https://olgashi.github.io/os-web-components
 
 # A Small Library of Custom Web components
 # 1. A simple navbar component that has multiple links and a logo.
